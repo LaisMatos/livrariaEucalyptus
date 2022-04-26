@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    text-decoration: none;
+    /*vertical-align: baseline;   alinhar pela base*/
+}
+h3{
+    width: inherit;
+    height: 80px;
+    color: #050505;
+    box-sizing: border-box;
+    padding-top: 25px;
+    font-size: 2rem;
+    font-family: 'Roboto Slab', serif;
+    word-spacing: 5px;
+    letter-spacing: 3px;
+}
+#conteudo{
+    width: 100%px;
+    height: 1100px;
+    text-align: center;
+    padding-top: 200px;
+
+}
+#conteudoLogin{
+    width: 1000px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px #000000;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #ffffff;      
+}
+
+#form{
+    width: inherit;
+    height: 185px;
+    padding-top: 20px;
+    box-sizing: border-box;  
+   
+}
+input{
+    width: 350px;
+    height: 30px;    
+    margin-top: 50px;
+    margin-left: 10px;
+    border: solid 1px #000000;
+    border-radius: 10px;
+    text-align: center; 
+    font-family: 'Roboto Slab', serif;    
+    font-size: 1.2rem;
+    
+}
+#botao{
+    width: 100px;
+    height: 50px;
+    margin-top: 50px;
+    background: #7dca76 ;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 7px;
+}
+span{
+    font-size: 2rem;
+    font-family: 'Roboto Slab', serif;
+
+}
