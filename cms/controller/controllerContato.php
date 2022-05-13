@@ -53,7 +53,7 @@ function listarCategoria(){
     //import do arquivo contatp.php para buscar os dados do banco de dados
     require_once('model/bd/contato.php');
 
-    //chama a função selectAllContatos(), que chamará os dados do banco de dados
+    //chama a função selectAllCategoria(), que chamará os dados do banco de dados
     $dados= selectAllCategoria();
 
     //retorno de dados
@@ -67,7 +67,7 @@ function listarCategoria(){
     
 }
 
-//fun para realizar eclusão de dados de contatos
+//fun para realizar eclusão de dados de categoria
 function excluirCategoria($id){
 
     //validação do idse for diferente de zero e diferente de vazio e tem que ser um numero 
@@ -93,6 +93,8 @@ function excluirCategoria($id){
 
 }
 
+
+/*______________________________________________________*/
 //fun solicita dados de model e encaminha a lista de contatos para a View
 function listarContatos(){
 
@@ -109,10 +111,8 @@ function listarContatos(){
         return false;
         
     }
-
     
 }
-
 //fun para realizar eclusão de dados de contatos
 function excluirContatos($id){
 

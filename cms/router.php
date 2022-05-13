@@ -11,8 +11,9 @@
 
 
 //Receber dados do formulário
-$action =(string)null;
+$action = (string)null;
 $identificador= (string)null; 
+
 
 
 //Validação para verificar se a requisição  é um post de um formulário
@@ -21,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD']=='GET') {
 
     //Recebendo dados via url (get) e qual ação será realizada
     $identificador= strtoupper($_GET['identificador']);
-    $action = strtoupper($_GET['action']); 
+    $action = strtoupper($_GET['action']);     
 
-    //Validação de quem esta solicitando dados para o arquivo rota
+    //Validação de quem esta solicitando dados para router
     switch ($identificador) {
         case 'CONTATOS':
             //import da controller Contatos
@@ -34,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD']=='GET') {
            if ($action =='INSERIR') {
                 
             // chama função de inserir na controller
-            $resposta=inserirCategoria($_POST);
+            $resposta=inserirContatos($_POST);
 
             //parte01: função inserirContatos($_POST) do arq controller
             //parte02: validação do tipo de dados que a controller retornou
@@ -44,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD']=='GET') {
                 if ($resposta) {
                     //parte01: REDIRECIONANDO PARA PÁGINA INICIAL VIA JS usando <window.location.href='index.php>
                     echo("<script>alert('REGISTRO INSERIDO COM SUCESSO');
-                    window.location.href='addcategoria.php';</script>");     
+                    window.location.href='index.php';</script>");     
                 }
 
               //se retornar um array, então houve um erro de processo de inserção
@@ -81,10 +82,126 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD']=='GET') {
                 }
             }
         break;
-        }
+
+        case 'CATEGORIAS':
+            //import da controller Contatos
+            require_once('controller/controllerContato.php');
+
+            //identificação do tipo de ação que será realizada
+            //identificação do tipo de ação que será realizada
+            if ($action =='INSERIR') {
+                
+            // chama função de inserir na controller
+            $resposta=inserirCategoria($_POST);
+
+            //parte01: função inserirContatos($_POST) do arq controller
+            //parte02: validação do tipo de dados que a controller retornou
+            if (is_bool($resposta)){ //parte02: se for booleano
+                
+                //verificar se o retorno foi verdadeiro
+                if ($resposta) {
+                    //parte01: REDIRECIONANDO PARA PÁGINA INICIAL VIA JS usando <window.location.href='index.php>
+                    echo("<script>alert('REGISTRO INSERIDO COM SUCESSO');
+                    window.location.href='addcategoria.php';</script>");     
+                }
+
+                //se retornar um array, então houve um erro de processo de inserção
+            } elseif (is_array($resposta)) {
+                
+                //retorno de msg
+                echo("<script>
+                    alert('".$resposta['message']."');
+                    window.history.back();
+                </script>");    
+                
+            }
+        }elseif ($action =='DELETAR') {
+                        
+                    //recebendo id do registro que deverá ser exluido, que foi enviado pela url no link da img do excluir através da index
+                    $idCategoria = $_GET['id'];
+
+                    //chamando fun deleteUsuario
+                    $resposta= excluirCategoria($idCategoria);
+
+                    //saida de msg
+                    if (is_bool($resposta)) {
+                        
+                        if ($resposta) {
+                            echo("<script>alert('REGISTRO EXCLUIDO COM SUCESSO');
+                            window.location.href='addcategoria.php';</script>");                         
+                        }
+
+                    }elseif(is_array($resposta)){
+                        echo("<script>
+                            alert('".$resposta['message']."');
+                            window.history.back();
+                        </script>");    
+                    }
+                }
+            break;
+
+        case 'USUARIO':
+            //import da controller Contatos
+            require_once('controller/controllerUsuario.php');
+
+            //identificação do tipo de ação que será realizada
+            //identificação do tipo de ação que será realizada
+            if ($action =='INSERIR') {
+                
+            // chama função de inserir na controller
+            $resposta=inserirUsuario($_POST);
+
+            //parte01: função inserirContatos($_POST) do arq controller
+            //parte02: validação do tipo de dados que a controller retornou
+            if (is_bool($resposta)){ //parte02: se for booleano
+                
+                //verificar se o retorno foi verdadeiro
+                if ($resposta) {
+                    //parte01: REDIRECIONANDO PARA PÁGINA INICIAL VIA JS usando <window.location.href='index.php>
+                    echo("<script>alert('REGISTRO INSERIDO COM SUCESSO');
+                    window.location.href='admUser.php';</script>");     
+                }
+
+                //se retornar um array, então houve um erro de processo de inserção
+            } elseif (is_array($resposta)) {
+                
+                //retorno de msg
+                echo("<script>
+                    alert('".$resposta['message']."');
+                    window.history.back();
+                </script>");    
+                
+            }
+        }elseif ($action =='DELETAR') {
+                
+                //recebendo id do registro que deverá ser exluido, que foi enviado pela url no link da img do excluir através da index
+                $idUsuario = $_GET['idusuario'];
+
+                //chamando fun deleteUsuario
+                $resposta= excluirUsuario($idUsuario);
+
+                //saida de msg
+                if (is_bool($resposta)) {
+                    
+                    if ($resposta) {
+                        echo("<script>alert('REGISTRO EXCLUIDO COM SUCESSO');
+                        window.location.href='admUser.php';</script>");                         
+                    }
+
+                }elseif(is_array($resposta)){
+                    echo("<script>
+                        alert('".$resposta['message']."');
+                        window.history.back();
+                    </script>");    
+                }
+            }
+        break;
+
+
+    }
         
             
-    }
+}
 
 
 

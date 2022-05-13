@@ -13,7 +13,7 @@
 const SERVER = 'localhost'; // local do banco
 const USER = 'root'; //usuário
 const PASSWORD ='bcd127';  //senha
-const DATABASE = 'dbcontatos'; //nome do banco
+const DATABASE = 'dblivraria'; //nome do banco
 
 
 //criar variavel $resultado que recebe a função conexaoMysql() para executar a função e exibir via var_dump o código
